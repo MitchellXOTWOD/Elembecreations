@@ -34,23 +34,23 @@ async function loadDynamicGallery() {
         // 2. Loop through each file found in the folder
         for (const file of files) {
             if (file.name.endsWith('.json')) {
-                // Fetch the actual text contents of the individual JSON file
                 const fileResponse = await fetch(file.download_url);
                 const projectData = await fileResponse.json();
 
-                // 3. Generate the dynamic HTML structure for each image card
+                // 1. Create the outer div wrapper with the exact class name
                 const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item'; // Matches your existing CSS styling
+                galleryItem.className = 'gallery-item';
 
+                // 2. Inject the internal tags matching your original HTML architecture perfectly
                 galleryItem.innerHTML = `
-                    <img src="${projectData.image}" alt="${projectData.title}">
-                    <div class="gallery-info">
-                        <h3>${projectData.title}</h3>
+                    <img src="${projectData.image}" alt="${projectData.description || projectData.title}">
+                    <div class="item-info">
+                        <h4>${projectData.title}</h4>
                         <p>${projectData.description}</p>
                     </div>
                 `;
 
-                // Append the brand new card into your live grid container
+                // 3. Append directly into the gallery-grid container
                 galleryGrid.appendChild(galleryItem);
             }
         }
