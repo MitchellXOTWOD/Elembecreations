@@ -18,6 +18,8 @@ collections:
     create: true # Allows her to add new items
     delete: true # Allows her to delete items
     slug: "{{slug}}"
+    extension: "json"
+    format: "json"
     fields:
       - { label: "Project Title", name: "title", widget: "string" }
       - { label: "Project Description", name: "description", widget: "text" }
