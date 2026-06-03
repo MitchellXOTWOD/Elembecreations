@@ -1,0 +1,494 @@
+/* ==========================================================================
+   1. DESIGN VARIABLES (The Vibe Palette)
+   ========================================================================== */
+:root {
+    --bg-color: #FAF6F0;       /* Soft, warm cream (cozy, rustic background) */
+    --primary-color: #D4A373;  /* Warm tan/wood tone */
+    --accent-pink: #E8A598;    /* Dusty rose / feminine accent */
+    --text-dark: #4A3E3D;      /* Deep charcoal-brown instead of harsh black */
+    --text-light: #FFFFFF;     /* Pure white for button text */
+    
+    /* Fonts */
+    --header-font: 'Playfair Display', serif;
+    --body-font: 'Poppins', sans-serif;
+}
+
+/* ==========================================================================
+   2. BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--body-font);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--header-font);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   3. NAVIGATION HEADER
+   ========================================================================== */
+header {
+    background-color: #FFFFFF;
+    border-bottom: 2px dashed var(--accent-pink); /* Cute stitched effect */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+}
+
+.logo h1 {
+    color: var(--text-dark);
+    font-size: 2rem;
+}
+
+.logo p {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover, 
+nav ul li a.active {
+    color: var(--accent-pink);
+}
+
+/* Hide hamburger button by default on desktop/tablet */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-dark);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE STYLES (Screens smaller than 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Show the hamburger bars */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Transform the nav menu into a smooth, animated dropdown block */
+    .nav-menu {
+        width: 100%;
+        display: flex;          /* Keep it display flex so layout calculates correctly */
+        flex-direction: column;
+        align-items: center;    /* Centers everything horizontally */
+        justify-content: center;/* Centers everything vertically if needed */
+        
+        /* Smooth Animation Settings */
+        max-height: 0;          /* Completely collapsed by default */
+        opacity: 0;             /* Invisible by default */
+        overflow: hidden;       /* Hides the text while collapsed */
+        transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding 0.4s ease-in-out;
+        padding: 0;             /* No padding when closed to prevent line ghosting */
+    }
+
+    /* When JavaScript adds the 'active' class, animate it open */
+    .nav-menu.active {
+        max-height: 300px;      /* Large enough to fit your 4 menu items comfortably */
+        opacity: 1;             /* Fade it in beautifully */
+        padding-top: 1.5rem;    /* Generous breathing room below the logo */
+        padding-bottom: 1rem;   /* Padding right above the stitched line */
+    }
+
+    /* Force the list items to stack vertically and center */
+    .nav-menu ul {
+        display: flex;
+        flex-direction: column; /* Stacks links vertically */
+        align-items: center;    /* Centers them precisely in the middle */
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-menu ul li {
+        margin: 0.8rem 0;       /* Perfect vertical spacing between choices */
+        margin-left: 0;         /* Clear out desktop margins */
+        text-align: center;
+        width: 100%;            /* Allows full click target area */
+    }
+
+    .nav-menu ul li a {
+        font-size: 1.1rem;      /* Slightly larger for easier mobile tapping */
+        display: inline-block;
+    }
+
+    /* Force header layout adjustments */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        box-shadow: none;        /* Kills any phantom shadow borders */
+    }
+
+    .logo {
+        width: 100%;
+        padding-right: 50px;
+    }
+
+    .menu-toggle {
+        position: absolute;
+        top: 2rem;
+        right: 5%;
+    }
+
+    /* Animate the hamburger into an 'X' when open */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+/* ==========================================================================
+   4. HOME PAGE CONTENT (MAIN)
+   ========================================================================== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 5%;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: #FFFDF9;
+    border-radius: 15px; /* Softer, feminine rounded edges */
+    box-shadow: 0 4px 15px rgba(74, 62, 61, 0.05); /* Soft shadow */
+    margin-bottom: 3rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--accent-pink);
+    color: var(--text-light);
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px); /* Subtle lifting effect */
+}
+
+/* Intro Section */
+.intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.intro h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #FFFFFF;
+    border-top: 1px solid #EFEAE4;
+    font-size: 0.9rem;
+    color: #8C8281;
+}
+
+/* ==========================================================================
+   6. GALLERY PAGE STYLES
+   ========================================================================== */
+.gallery-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.gallery-intro h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* The Magic Grid Layout */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; /* Spacing between the photos */
+}
+
+/* Individual Card Setup */
+.gallery-item {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden; /* Keeps the image inside the rounded corners */
+    box-shadow: 0 4px 10px rgba(74, 62, 61, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect to make it feel interactive */
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(74, 62, 61, 0.08);
+}
+
+/* Ensure images fit nicely inside their cards */
+.gallery-item img {
+    width: 100%;
+    height: 250px;       /* Forces all images to be a uniform height */
+    object-fit: cover;   /* Crops the image perfectly without distorting it */
+    display: block;
+}
+
+/* Text box underneath each photo */
+.item-info {
+    padding: 1.2rem;
+    border-top: 1px dashed #EFEAE4; /* Another subtle stitched look */
+}
+
+.item-info h4 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+}
+
+.item-info p {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   7. CONTACT PAGE STYLES
+   ========================================================================== */
+.contact-container {
+    max-width: 600px; /* Keeps the form from getting too wide on desktop */
+    margin: 0 auto;
+    padding: 3rem 5%;
+}
+
+.contact-intro {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.contact-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Form Container Styling */
+.contact-form {
+    background-color: #FFFFFF;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(74, 62, 61, 0.04);
+    border: 1px solid #EFEAE4;
+}
+
+/* Individual Form Fields Layout */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Puts label on top of the input box */
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+/* Input Boxes and Textareas */
+.form-group input,
+.form-group textarea {
+    font-family: var(--body-font);
+    padding: 0.8rem 1rem;
+    border: 1px solid #D9CECE;
+    border-radius: 8px;
+    background-color: #FFFDF9;
+    color: var(--text-dark);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect when a user clicks into a text box */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 0 3px rgba(232, 165, 152, 0.2); /* Soft pink glow */
+}
+
+/* Center and stretch the button slightly */
+.form-btn {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   8. ORDER & PRICING PAGE STYLES
+   ========================================================================== */
+.order-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Pricing Cards Layout */
+.pricing-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.price-card {
+    background-color: #FFFFFF;
+    border: 1px solid #EFEAE4;
+    border-radius: 12px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(74, 62, 61, 0.02);
+}
+
+/* Give the middle quilt card a special popping effect */
+.price-card.highlighted {
+    border: 2px solid var(--accent-pink);
+    transform: scale(1.03); /* Slightly larger */
+    box-shadow: 0 8px 25px rgba(232, 165, 152, 0.15);
+}
+
+/* "Most Popular" Ribbon Badge */
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-pink);
+    color: var(--text-light);
+    padding: 0.2rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.price-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.price-card .price {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-family: var(--header-font);
+}
+
+.price-desc {
+    font-size: 0.9rem;
+    color: #6B5E5D;
+}
+
+/* Order Form Container centering */
+.order-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.order-form-container h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Styling for the dropdown menu */
+.form-group select {
+    font-family: var(--body-font);
+    padding: 0.8rem 1rem;
+    border: 1px solid #D9CECE;
+    border-radius: 8px;
+    background-color: #FFFDF9;
+    color: var(--text-dark);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-pink);
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elembe Creations | Place an Order</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Main Navigation Bar (Active link moved to Order) -->
+    <header>
+        <div class="logo">
+            <h1>Elembe Creations</h1>
+            <p>Custom Quilts, Hems & Stitching</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="order.html" class="active">Place an Order</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <section class="order-intro">
+            <h2>Services & Orders</h2>
+            <p>Select a service below and fill out the form to secure your spot in our studio schedule.</p>
+        </section>
+
+        <!-- Pricing Cards Menu (Using Flexbox/Grid) -->
+        <section class="pricing-menu">
+            <div class="price-card">
+                <h3>Pants & Skirt Hemming</h3>
+                <p class="price">Starting at $15</p>
+                <p class="price-desc">Quick, precision adjustments to ensure the perfect garment length.</p>
+            </div>
+            <div class="price-card highlighted">
+                <span class="badge">Most Popular</span>
+                <h3>Custom Heirloom Quilts</h3>
+                <p class="price">Starting at $150</p>
+                <p class="price-desc">Beautifully stitched, personalized patchwork designs made to last generations.</p>
+            </div>
+            <div class="price-card">
+                <h3>General Alterations</h3>
+                <p class="price">Starting at $25</p>
+                <p class="price-desc">Form-fitting adjustments for shirts, dresses, jackets, and everyday wear.</p>
+            </div>
+        </section>
+
+        <!-- Order Placement Form -->
+        <section class="order-form-container">
+            <h3>Submit an Order Inquiry</h3>
+            <form action="#" method="POST" class="contact-form">
+                
+                <div class="form-group">
+                    <label for="client-name">Your Name</label>
+                    <input type="text" id="client-name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="client-email">Email Address</label>
+                    <input type="email" id="client-email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service-type">Select a Service</label>
+                    <select id="service-type" name="service" required>
+                        <option value="" disabled selected>-- Choose an option --</option>
+                        <option value="hemming">Pants / Skirt Hemming</option>
+                        <option value="quilt">Custom Heirloom Quilt</option>
+                        <option value="alterations">General Alterations / Repairs</option>
+                        <option value="other">Other Custom Stitching</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-details">Project Description & Dimensions</label>
+                    <textarea id="project-details" name="details" rows="5" placeholder="Describe what you need stitched, preferred colors, fabric types, or sizes..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn form-btn">Submit Order Request</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Elembe Creations. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
