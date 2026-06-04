@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "title": "Bib",
+      "image": "/assets/images/gallery/bib.jpg",
+      "category": "Accessories"
+    },
+    {
+      "title": "2-Layer Skirt",
+      "image": "/assets/images/gallery/2-layer-skirt.jpg",
+      "category": "Clothing"
+    }
+  ]
+}
