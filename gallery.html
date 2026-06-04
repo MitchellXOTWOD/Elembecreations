@@ -49,5 +49,50 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    // Wait for the webpage to load, then look at the CMS data file
+        fetch('/data/gallery.json')
+            .then(response => {
+            if (!response.ok) throw new Error("No gallery items found yet.");
+            return response.json();
+            })
+            .then(data => {
+            const galleryContainer = document.getElementById('gallery-grid');
+            const images = data.items || []; 
+            
+            // Loop through every item your client uploaded
+            images.forEach(item => {
+                // 1. Create a container for the image card
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                
+                // 2. Create the image element
+                const imgElement = document.createElement('img');
+                imgElement.src = item.image; // Pulls path from JSON
+                imgElement.alt = item.title;
+                imgElement.className = 'gallery-thumb';
+                
+                // 3. Create a title text element
+                const titleElement = document.createElement('h3');
+                titleElement.textContent = item.title;
+                
+                // 4. Create a category badge element
+                const categoryElement = document.createElement('span');
+                categoryElement.textContent = item.category;
+                categoryElement.className = 'category-badge';
+                
+                // Assemble the card and throw it into the gallery grid
+                card.appendChild(imgElement);
+                card.appendChild(titleElement);
+                card.appendChild(categoryElement);
+                galleryContainer.appendChild(card);
+            });
+            })
+            .catch(err => {
+            console.log("Gallery is currently empty or loading:", err);
+            // Optional: Display a fallback message if she hasn't uploaded anything yet
+            document.getElementById('gallery-grid').innerHTML = "<p>Check back soon for updates!</p>";
+            });
+    </script>
 </body>
 </html>

@@ -8,12 +8,22 @@ media_folder: "assets/images/gallery" # Where uploaded images will save in your 
 public_folder: "/assets/images/gallery"
 
 collections:
-  - name: "gallery"
-    label: "Gallery Images"
-    folder: "data/gallery" # The CMS will save a small file for each image here
-    create: true
-    slug: "{{fields.title}}"
-    fields:
-      - { label: "Name", name: "title", widget: "string" }
-      - { label: "Gallery Image", name: "image", widget: "image" }
-      - { label: "Category", name: "category", widget: "string" }
+  - name: "gallery_page"
+    label: "Gallery Management"
+    delete: false # Prevents accidental deletion of the whole gallery file
+    editor:
+      preview: false # Keeps the interface clean and fast
+    files:
+      - name: "gallery"
+        label: "Gallery Page"
+        file: "data/gallery.json" # Everything saves inside this single file
+        fields:
+          - label: "Gallery Items"
+            name: "items"
+            widget: "list" # ◄ This turns the dashboard into a repeatable list
+            summary: "{{fields.title}} ({{fields.category}})" # Previews the row info
+            label_singular: "New Item"
+            fields:
+              - { label: "Name", name: "title", widget: "string" }
+              - { label: "Gallery Image", name: "image", widget: "image" }
+              - { label: "Category", name: "category", widget: "string" }
