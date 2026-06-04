@@ -1,7 +1,8 @@
 backend:
   name: github
-  repo: MitchellXOTWOD/your-repo-name # Replace with your username/repo name
+  repo: MitchellXOTWOD/Elembecreations
   branch: main
+  base_url: https://elembecreations.slimmitch-mn.workers.dev/
 
 media_folder: "assets/images/gallery" # Where uploaded images will save in your project
 public_folder: "/assets/images/gallery"
