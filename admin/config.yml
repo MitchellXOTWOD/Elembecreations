@@ -1,27 +1,18 @@
-# 1. Backend Settings: Tells the CMS to connect securely to your GitHub repo
 backend:
-  name: git-gateway
-  branch: main # Change this to 'master' if your default GitHub branch is master
+  name: github
+  repo: MitchellXOTWOD/your-repo-name # Replace with your username/repo name
+  branch: main
 
-# 2. Media Settings: Tells the CMS where to save new uploaded photos
-media_folder: "images" # Where the actual files go in your project
-public_folder: "/images" # The path your HTML files use to find them
+media_folder: "assets/images/gallery" # Where uploaded images will save in your project
+public_folder: "/assets/images/gallery"
 
-# 3. Security Settings: Hooks into Netlify's user authentication
-local_backend: true # Allows you to test this locally on your laptop!
-
-# 4. Content Collections: This maps out the editable areas of your site
 collections:
   - name: "gallery"
-    label: "Gallery Projects"
-    folder: "data/gallery" # We will create this folder next to store the data
-    create: true # Allows her to add new items
-    delete: true # Allows her to delete items
-    slug: "{{slug}}"
-    extension: "json"
-    format: "json"
+    label: "Gallery Images"
+    folder: "data/gallery" # The CMS will save a small file for each image here
+    create: true
+    slug: "{{fields.title}}"
     fields:
-      - { label: "Project Title", name: "title", widget: "string" }
-      - { label: "Project Description", name: "description", widget: "text" }
-      - { label: "Project Image", name: "image", widget: "image" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Gallery Image", name: "image", widget: "image" }
       - { label: "Date Added", name: "date", widget: "datetime" }
