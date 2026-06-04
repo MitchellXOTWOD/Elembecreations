@@ -14,6 +14,6 @@ collections:
     create: true
     slug: "{{fields.title}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Name", name: "title", widget: "string" }
       - { label: "Gallery Image", name: "image", widget: "image" }
-      - { label: "Date Added", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "string" }
