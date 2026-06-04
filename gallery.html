@@ -39,7 +39,7 @@
             <p>A look at some of our favorite custom quilts, clothing alterations, and precision stitching projects.</p>
         </section>
 
-        <section class="gallery-grid">
+        <section id="gallery-grid" class="gallery-grid">
 
         </section>
     </main>
@@ -50,49 +50,55 @@
 
     <script src="js/main.js"></script>
     <script>
-    // Wait for the webpage to load, then look at the CMS data file
-        fetch('/data/gallery.json')
-            .then(response => {
-            if (!response.ok) throw new Error("No gallery items found yet.");
-            return response.json();
-            })
-            .then(data => {
-            const galleryContainer = document.getElementById('gallery-grid');
-            const images = data.items || []; 
+    // Fetch the unified batch data from the CMS
+    fetch('/data/gallery.json')
+        .then(response => {
+        if (!response.ok) throw new Error("No gallery items found.");
+        return response.json();
+        })
+        .then(data => {
+        const galleryContainer = document.querySelector('.gallery-grid');
+        const images = data.items || []; 
+        
+        // Clear out any loading indicators
+        galleryContainer.innerHTML = ''; 
+
+        images.forEach(item => {
+            // 1. Create the main card element matching your CSS (.gallery-item)
+            const card = document.createElement('div');
+            card.className = 'gallery-item';
             
-            // Loop through every item your client uploaded
-            images.forEach(item => {
-                // 1. Create a container for the image card
-                const card = document.createElement('div');
-                card.className = 'gallery-card';
-                
-                // 2. Create the image element
-                const imgElement = document.createElement('img');
-                imgElement.src = item.image; // Pulls path from JSON
-                imgElement.alt = item.title;
-                imgElement.className = 'gallery-thumb';
-                
-                // 3. Create a title text element
-                const titleElement = document.createElement('h3');
-                titleElement.textContent = item.title;
-                
-                // 4. Create a category badge element
-                const categoryElement = document.createElement('span');
-                categoryElement.textContent = item.category;
-                categoryElement.className = 'category-badge';
-                
-                // Assemble the card and throw it into the gallery grid
-                card.appendChild(imgElement);
-                card.appendChild(titleElement);
-                card.appendChild(categoryElement);
-                galleryContainer.appendChild(card);
-            });
-            })
-            .catch(err => {
-            console.log("Gallery is currently empty or loading:", err);
-            // Optional: Display a fallback message if she hasn't uploaded anything yet
-            document.getElementById('gallery-grid').innerHTML = "<p>Check back soon for updates!</p>";
-            });
+            // 2. Create the image element (automatically styled by .gallery-item img)
+            const imgElement = document.createElement('img');
+            imgElement.src = item.image;
+            imgElement.alt = item.title;
+            
+            // 3. Create the text info wrapper (.item-info)
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'item-info';
+            
+            // 4. Create the title header matching your CSS (.item-info h4)
+            const titleElement = document.createElement('h4');
+            titleElement.textContent = item.title;
+            
+            // 5. Create the category tag matching your CSS (.item-info p)
+            const categoryElement = document.createElement('p');
+            categoryElement.textContent = item.category;
+            
+            // Assemble the text content container
+            infoDiv.appendChild(titleElement);
+            infoDiv.appendChild(categoryElement);
+            
+            // Assemble the main card and append it to the grid
+            card.appendChild(imgElement);
+            card.appendChild(infoDiv);
+            galleryContainer.appendChild(card);
+        });
+        })
+        .catch(err => {
+        console.log("Gallery loading layout state:", err);
+        document.querySelector('.gallery-grid').innerHTML = "<p>Check back soon for updates!</p>";
+        });
     </script>
 </body>
 </html>
