@@ -1,27 +1,23 @@
-# 1. Backend Settings: Tells the CMS to connect securely to your GitHub repo
+# Backend configuration utilizing your existing Netlify Git Gateway
 backend:
   name: git-gateway
-  branch: main # Change this to 'master' if your default GitHub branch is master
+  branch: main # Change to master if your default branch is master
 
-# 2. Media Settings: Tells the CMS where to save new uploaded photos
-media_folder: "images" # Where the actual files go in your project
-public_folder: "/images" # The path your HTML files use to find them
+# Where uploaded media (craft photos) will live in your repo
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
 
-# 3. Security Settings: Hooks into Netlify's user authentication
-local_backend: true # Allows you to test this locally on your laptop!
-
-# 4. Content Collections: This maps out the editable areas of your site
+# Define the collections (the structures for your dashboard forms)
 collections:
   - name: "gallery"
-    label: "Gallery Projects"
-    folder: "data/gallery" # We will create this folder next to store the data
-    create: true # Allows her to add new items
-    delete: true # Allows her to delete items
-    slug: "{{slug}}"
+    label: "Craft Gallery"
+    folder: "data/gallery" # Where individual .json files will be generated
+    create: true # Allows client to add new items
+    slug: "{{title}}-{{uniqid}}" # Prevents file name collisions
     extension: "json"
     format: "json"
     fields:
       - { label: "Project Title", name: "title", widget: "string" }
-      - { label: "Project Description", name: "description", widget: "text" }
-      - { label: "Project Image", name: "image", widget: "image" }
+      - { label: "Project Description", name: "description", widget: "text", required: false }
+      - { label: "Featured Craft Image", name: "image", widget: "image" }
       - { label: "Date Added", name: "date", widget: "datetime" }
