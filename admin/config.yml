@@ -2,7 +2,7 @@ backend:
   name: github
   repo: MitchellXOTWOD/Elembecreations
   branch: main
-  base_url: https://elembecreations.slimmitch-mn.workers.dev/
+  base_url: https://elembecreations.slimmitch-mn.pages.dev/
 
 media_folder: "assets/images/gallery" # Where uploaded images will save in your project
 public_folder: "/assets/images/gallery"
