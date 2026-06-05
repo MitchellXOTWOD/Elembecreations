@@ -4,22 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elembe Creations Content Manager</title>
-    <!-- Include the Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <script>
-      // ◄ ADD THIS BLOCK RIGHT HERE
-      // Replace 'your-netlify-site-name' with your actual random Netlify URL name 
-      // (e.g., https://magnificent-stardust-12345.netlify.app)
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.setAPIUrl('https://elembecreations.netlify.app/.netlify/identity');
-      }
+      // Force the browser to look at your Netlify production app domain
+      // Replace 'your-site-name' with your actual random Netlify dashboard name
+      localStorage.setItem('netlifySiteURL', 'https://elembecreations.netlify.app');
     </script>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
     <script>
+      // Clean handling for user logins and redirects
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", (user) => {
           if (!user) {
