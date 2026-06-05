@@ -49,56 +49,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-    // Fetch the unified batch data from the CMS
-    fetch('/data/gallery.json')
-        .then(response => {
-        if (!response.ok) throw new Error("No gallery items found.");
-        return response.json();
-        })
-        .then(data => {
-        const galleryContainer = document.querySelector('.gallery-grid');
-        const images = data.items || []; 
-        
-        // Clear out any loading indicators
-        galleryContainer.innerHTML = ''; 
-
-        images.forEach(item => {
-            // 1. Create the main card element matching your CSS (.gallery-item)
-            const card = document.createElement('div');
-            card.className = 'gallery-item';
-            
-            // 2. Create the image element (automatically styled by .gallery-item img)
-            const imgElement = document.createElement('img');
-            imgElement.src = item.image;
-            imgElement.alt = item.title;
-            
-            // 3. Create the text info wrapper (.item-info)
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'item-info';
-            
-            // 4. Create the title header matching your CSS (.item-info h4)
-            const titleElement = document.createElement('h4');
-            titleElement.textContent = item.title;
-            
-            // 5. Create the category tag matching your CSS (.item-info p)
-            const categoryElement = document.createElement('p');
-            categoryElement.textContent = item.category;
-            
-            // Assemble the text content container
-            infoDiv.appendChild(titleElement);
-            infoDiv.appendChild(categoryElement);
-            
-            // Assemble the main card and append it to the grid
-            card.appendChild(imgElement);
-            card.appendChild(infoDiv);
-            galleryContainer.appendChild(card);
-        });
-        })
-        .catch(err => {
-        console.log("Gallery loading layout state:", err);
-        document.querySelector('.gallery-grid').innerHTML = "<p>Check back soon for updates!</p>";
-        });
-    </script>
+    
 </body>
 </html>

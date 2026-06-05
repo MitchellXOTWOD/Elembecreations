@@ -5,60 +5,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.querySelector('.nav-menu');
 
     // Toggle the 'active' class when the hamburger is clicked
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Fire off the gallery loading function cleanly inside the DOM loop
+    loadDynamicGallery();
 });
 
-// Function to load gallery items directly from the GitHub repository data folder
+// Function to load gallery items directly from your production data file
 async function loadDynamicGallery() {
-    const galleryGrid = document.querySelector('.gallery-grid'); // Make sure this matches your CSS grid class
-    if (!galleryGrid) return; // Only run this code if we are actually on the gallery page
-
-    // Replace with your actual GitHub username and repository name
-    const repoOwner = "MitchellXOTWOD";
-    const repoName = "Elembecreations"; 
-    const folderPath = "data/gallery";
+    const galleryGrid = document.querySelector('.gallery-grid'); 
+    if (!galleryGrid) return; 
 
     try {
-        // 1. Fetch the list of all files inside the data/gallery folder from GitHub
-        const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`);
-        if (!response.ok) throw new Error("Failed to fetch gallery folder structure");
+        // Fetch the unified database file created by Decap CMS
+        const response = await fetch('/data/gallery.json');
+        if (!response.ok) throw new Error("Failed to fetch gallery data file");
         
-        const files = await response.json();
+        const galleryData = await response.json();
         
-        // Clear out any placeholder hardcoded HTML items inside the grid
+        // Clear out any loading indicators or placeholders
         galleryGrid.innerHTML = '';
 
-        // 2. Loop through each file found in the folder
-        for (const file of files) {
-            if (file.name.endsWith('.json')) {
-                const fileResponse = await fetch(file.download_url);
-                const projectData = await fileResponse.json();
-
-                // 1. Create the outer div wrapper with the exact class name
+        // Loop through the array of items saved inside your gallery file
+        if (galleryData && galleryData.items) {
+            galleryData.items.forEach(projectData => {
+                
+                // 1. Create the outer div wrapper with your exact class name
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
 
-                // 2. Inject the internal tags matching your original HTML architecture perfectly
+                // 2. Inject your original HTML architecture exactly as you designed it
                 galleryItem.innerHTML = `
                     <img src="${projectData.image}" alt="${projectData.description || projectData.title}">
                     <div class="item-info">
                         <h4>${projectData.title}</h4>
-                        <p>${projectData.description}</p>
+                        <p>${projectData.category || ''}</p>
                     </div>
                 `;
 
-                // 3. Append directly into the gallery-grid container
+                // 3. Append directly into your CSS layout grid
                 galleryGrid.appendChild(galleryItem);
-            }
+            });
         }
     } catch (error) {
         console.error("Error loading dynamic gallery items:", error);
         galleryGrid.innerHTML = `<p style="text-align:center; width:100%;">Give us a moment, we're pulling the latest custom pieces into the gallery...</p>`;
     }
 }
-
-// Fire off the function the absolute second the webpage loads up
-document.addEventListener('DOMContentLoaded', loadDynamicGallery);
