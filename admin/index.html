@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elembe Creations Content Manager</title>
     
-    <script>
-      // Force the browser to look at your Netlify production app domain
-      // Replace 'your-site-name' with your actual random Netlify dashboard name
-      localStorage.setItem('netlifySiteURL', 'https://elembecreations.netlify.app');
-    </script>
-
+    <!-- 1. Include the Netlify Identity Widget Script first -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <script>
+      // 2. Initialize the widget with the explicit API URL configuration immediately
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.init({
+          APIUrl: 'https://elembecreations.netlify.app/.netlify/identity'
+        });
+      }
+    </script>
   </head>
   <body>
+    <!-- 3. Load the Decap CMS system engine -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
     <script>
-      // Clean handling for user logins and redirects
+      // 4. Listen for successful authentication steps and handle the panel routing
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", (user) => {
           if (!user) {
