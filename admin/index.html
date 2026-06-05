@@ -6,13 +6,20 @@
     <title>Elembe Creations Content Manager</title>
     <!-- Include the Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <script>
+      // ◄ ADD THIS BLOCK RIGHT HERE
+      // Replace 'your-netlify-site-name' with your actual random Netlify URL name 
+      // (e.g., https://magnificent-stardust-12345.netlify.app)
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.setAPIUrl('https://elembecreations.netlify.app/.netlify/identity');
+      }
+    </script>
   </head>
   <body>
-    <!-- Include the script that runs Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
     <script>
-      // Crucial: Redirect the user back to the admin page after they successfully log in
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", (user) => {
           if (!user) {
