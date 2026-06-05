@@ -5,33 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elembe Creations Content Manager</title>
     
-    <!-- 1. Include the Netlify Identity Widget Script first -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <script>
-      // 2. Initialize the widget with the explicit API URL configuration immediately
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.init({
-          APIUrl: 'https://elembecreations.netlify.app/.netlify/identity'
-        });
-      }
-    </script>
   </head>
   <body>
-    <!-- 3. Load the Decap CMS system engine -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
     <script>
-      // 4. Listen for successful authentication steps and handle the panel routing
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
+      // 3. Wait until the browser has built the HTML structure completely
+      window.addEventListener('DOMContentLoaded', () => {
+        
+        // Initialize the Identity Widget with your direct endpoint
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.init({
+            APIUrl: 'https://elembecreations.netlify.app/.netlify/identity'
+          });
+
+          // Handle seamless redirection once logged in
+          window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+              window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+              });
+            }
+          });
+        }
+      });
     </script>
   </body>
 </html>
