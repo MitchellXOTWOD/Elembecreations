@@ -9,6 +9,11 @@
       "title": "2-Layer Skirt",
       "image": "/assets/images/gallery/2-layer-skirt.jpg",
       "category": "Clothing"
+    },
+    {
+      "image": "/assets/images/gallery/pot-holders.jpg",
+      "title": "Pot Holders",
+      "category": "Kitchen Accessories"
     }
   ]
 }
