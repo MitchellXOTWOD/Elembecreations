@@ -1,8 +1,18 @@
 {
   "items": [
     {
+      "image": "/data/assets/images/gallery/bib.jpg",
+      "title": "Bib",
+      "category": "Baby Accessories"
+    },
+    {
+      "title": "Pot Holders",
+      "image": "/data/assets/images/gallery/pot-holders.jpg",
+      "category": "Kitchen Accessories"
+    },
+    {
       "title": "Apron",
-      "image": "/assets/images/gallery/apron.jpg",
+      "image": "/data/assets/images/gallery/apron.jpg",
       "category": "Kitchenwear"
     }
   ]
