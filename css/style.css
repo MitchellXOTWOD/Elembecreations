@@ -492,3 +492,62 @@ footer {
     outline: none;
     border-color: var(--accent-pink);
 }
+
+/* Lightbox Background Overlay */
+.lightbox-modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999; /* Ensures it sits on top of navbars and headers */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Smooth dark background */
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+/* The Image Frame */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.25s ease-out;
+}
+
+/* Close Button Theme */
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    color: #b38059; /* Matches your accent scheme color */
+}
+
+/* Smooth zoom-in pop animation */
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.gallery-item img {
+    cursor: zoom-in;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.02); /* Very subtle pop forward */
+    filter: brightness(0.95); /* Slight tint shift on mouseover */
+}

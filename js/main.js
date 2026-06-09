@@ -100,3 +100,43 @@ async function loadOrderProducts() {
         console.warn("Could not separate order content or local JSON file is missing:", error);
     }
 }
+
+// ==========================================
+// LIGHTBOX MODAL FUNCTIONALITY
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-target-img');
+    const closeBtn = document.querySelector('.modal-close');
+
+    // Safety check to ensure the elements exist on the current page
+    if (!modal || !modalImg) return;
+
+    // 1. Listen for clicks on any image inside a gallery element
+    document.body.addEventListener('click', (e) => {
+        if (e.target.closest('.gallery-item') && e.target.tagName === 'IMG') {
+            modal.style.display = 'flex';
+            modalImg.src = e.target.src;
+            modalImg.alt = e.target.alt;
+            
+            // Optional: Freeze page scrolling behind the modal overlay
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    // 2. Close modal when clicking the 'X' button
+    closeBtn.addEventListener('click', closeModal);
+
+    // 3. Close modal when clicking anywhere on the dark background
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.style.display = 'none';
+        modalImg.src = ''; // Clear image memory paths
+        document.body.style.overflow = ''; // Restore scrolling layout
+    }
+});
