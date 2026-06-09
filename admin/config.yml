@@ -4,9 +4,6 @@ backend:
   identity_url: "https://elembecreations.netlify.app/.netlify/identity"
   gateway_url: "https://elembecreations.netlify.app/.netlify/git"
 
-media_folder: "assets/images/gallery" # Where uploaded images will save in your project
-public_folder: "/assets/images/gallery"
-
 collections:
   - name: "gallery_page"
     label: "Gallery Management"
@@ -17,6 +14,8 @@ collections:
       - name: "gallery"
         label: "Gallery Page"
         file: "data/gallery.json" # Everything saves inside this single file
+        media_folder: "assets/images/gallery" # Where uploaded images will save in your project
+        public_folder: "/assets/images/gallery"
         fields:
           - label: "Gallery Items"
             name: "items"
@@ -33,12 +32,12 @@ collections:
     editor:
       preview: false
     # ⬇ This isolates product images into a completely unique folder
-    media_folder: "assets/images/orders"
-    public_folder: "/assets/images/orders"
     files:
       - name: "order_products"
         label: "Available Products"
         file: "data/order_products.json" # ⬇ Separate JSON data storage file
+        media_folder: "assets/images/orders"
+        public_folder: "/assets/images/orders"
         fields:
           - label: "Product Inventory"
             name: "items"
