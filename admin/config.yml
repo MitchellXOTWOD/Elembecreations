@@ -4,8 +4,8 @@ backend:
   identity_url: "https://elembecreations.netlify.app/.netlify/identity"
   gateway_url: "https://elembecreations.netlify.app/.netlify/git"
 
-  media_folder: "assets/images/gallery" # Where uploaded images will save in your project
-  public_folder: "/assets/images/gallery"
+media_folder: "assets/images/gallery" # Where uploaded images will save in your project
+public_folder: "/assets/images/gallery"
 
 collections:
   - name: "gallery_page"
