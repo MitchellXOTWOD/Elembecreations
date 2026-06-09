@@ -1,16 +1,10 @@
 {
   "items": [
     {
-      "title": "Custom Embroidery Tote Bag",
-      "image": "assets/images/orders/Bag.jpg",
-      "category": "Bags & Accessories",
-      "price": "$45.00"
-    },
-    {
-      "title": "Custom T-Shirt Quilt",
+      "title": "T-shirt Quilt",
       "image": "/assets/images/orders/quilt2.jpg",
-      "category": "Quilt",
-      "price": "$100"
+      "category": "Custom Quilt",
+      "price": "$100.00"
     }
   ]
 }
