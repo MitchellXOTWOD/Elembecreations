@@ -27,3 +27,26 @@ collections:
               - { label: "Name", name: "title", widget: "string" }
               - { label: "Gallery Image", name: "image", widget: "image" }
               - { label: "Category", name: "category", widget: "string" }
+  - name: "order_products_page"
+    label: "Order Page Products"
+    delete: false
+    editor:
+      preview: false
+    # ⬇ This isolates product images into a completely unique folder
+    media_folder: "assets/images/orders"
+    public_folder: "/assets/images/orders"
+    files:
+      - name: "order_products"
+        label: "Available Products"
+        file: "data/order_products.json" # ⬇ Separate JSON data storage file
+        fields:
+          - label: "Product Inventory"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.price}})"
+            label_singular: "New Product Tile"
+            fields:
+              - { label: "Product Name", name: "title", widget: "string" }
+              - { label: "Product Image", name: "image", widget: "image" }
+              - { label: "Category", name: "category", widget: "string" }
+              - { label: "Price (e.g., $45)", name: "price", widget: "string" }
