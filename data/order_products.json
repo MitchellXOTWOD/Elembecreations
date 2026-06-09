@@ -5,6 +5,12 @@
       "image": "assets/images/orders/Bag.jpg",
       "category": "Bags & Accessories",
       "price": "$45.00"
+    },
+    {
+      "title": "Custom T-Shirt Quilt",
+      "image": "/assets/images/orders/quilt2.jpg",
+      "category": "Quilt",
+      "price": "$100"
     }
   ]
 }
