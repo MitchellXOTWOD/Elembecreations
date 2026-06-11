@@ -1,9 +1,9 @@
 {
   "items": [
     {
-      "title": "T-shirt Quilt",
-      "image": "/assets/images/orders/quilt2.jpg",
-      "category": "Custom Quilt",
+      "title": "Custom Shirt Quilt",
+      "image": "/data/assets/images/orders/quilt2.jpg",
+      "category": "Quilts",
       "price": "$100.00"
     }
   ]
